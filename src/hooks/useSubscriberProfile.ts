@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 // ═══════════════════════════════════════════════════════════════
 // TYPES
@@ -27,6 +27,8 @@ export interface SubscriberProfile {
 }
 
 const STORAGE_KEY = 'zine-subscriber-profile';
+const USER_ID_KEY = 'zine-user-id';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 const DEFAULT_PROFILE: SubscriberProfile = {
   subscriberName: '',
@@ -50,6 +52,18 @@ export function getInitials(name: string): string {
   return (words[0].charAt(0) + words[words.length - 1].charAt(0)).toUpperCase();
 }
 
+async function apiPut(userId: number, data: Record<string, unknown>): Promise<void> {
+  try {
+    await fetch(`${API_BASE}/api/users/${userId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+  } catch {
+    // Silent fail — localStorage remains source of truth offline
+  }
+}
+
 // ═══════════════════════════════════════════════════════════════
 // HOOK
 // ═══════════════════════════════════════════════════════════════
@@ -57,6 +71,7 @@ export function getInitials(name: string): string {
 export function useSubscriberProfile() {
   const [profile, setProfile] = useState<SubscriberProfile>(DEFAULT_PROFILE);
   const [isLoaded, setIsLoaded] = useState(false);
+  const userIdRef = useRef<number | null>(null);
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -66,13 +81,17 @@ export function useSubscriberProfile() {
         const parsed = JSON.parse(stored) as SubscriberProfile;
         setProfile(parsed);
       }
+      const storedId = localStorage.getItem(USER_ID_KEY);
+      if (storedId) {
+        userIdRef.current = parseInt(storedId, 10);
+      }
     } catch {
       // Silent fail, use defaults
     }
     setIsLoaded(true);
   }, []);
 
-  // Save to localStorage
+  // Save to localStorage + API write-through
   const saveProfile = useCallback((updates: Partial<SubscriberProfile>) => {
     setProfile((prev) => {
       const updated = {
@@ -84,6 +103,20 @@ export function useSubscriberProfile() {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
       } catch {
         // Silent fail
+      }
+      // Write-through to API
+      if (userIdRef.current) {
+        apiPut(userIdRef.current, {
+          subscriberName: updated.subscriberName,
+          contactMethod: updated.contactMethod,
+          contactValue: updated.contactValue,
+          silhouette: updated.silhouette,
+          tempo: updated.tempo,
+          followedBrands: updated.followedBrands,
+          aesthetic: updated.aesthetic,
+          palette: updated.palette,
+          vibe: updated.vibe,
+        });
       }
       return updated;
     });
@@ -132,6 +165,9 @@ export function useSubscriberProfile() {
         } catch {
           // Silent fail
         }
+        if (userIdRef.current) {
+          apiPut(userIdRef.current, { followedBrands: updated.followedBrands });
+        }
         return updated;
       });
     },
@@ -151,6 +187,9 @@ export function useSubscriberProfile() {
         } catch {
           // Silent fail
         }
+        if (userIdRef.current) {
+          apiPut(userIdRef.current, { followedBrands: updated.followedBrands });
+        }
         return updated;
       });
     },
@@ -167,20 +206,24 @@ export function useSubscriberProfile() {
     setProfile(DEFAULT_PROFILE);
     try {
       localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(USER_ID_KEY);
     } catch {
       // Silent fail
     }
+    userIdRef.current = null;
   }, []);
 
   // Computed values
   const initials = getInitials(profile.subscriberName);
   const hasCompletedOnboarding = profile.subscriberName.length > 0;
+  const userId = userIdRef.current;
 
   return {
     profile,
     isLoaded,
     initials,
     hasCompletedOnboarding,
+    userId,
     updateSubscriberInfo,
     updateMandate,
     updateBriefing,

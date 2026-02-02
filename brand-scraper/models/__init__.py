@@ -10,6 +10,9 @@ Usage:
 from .database import Base, Session, engine, init_db
 from .product import Product, ProductHistory
 from .brand import Brand
+from .user import User
+from .interaction import UserInteraction
+from .delivery import ZineDelivery
 
 __all__ = [
     "Base",
@@ -19,4 +22,7 @@ __all__ = [
     "Product",
     "ProductHistory",
     "Brand",
+    "User",
+    "UserInteraction",
+    "ZineDelivery",
 ]

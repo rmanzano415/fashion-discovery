@@ -30,7 +30,7 @@ def init_db():
     Call this once on first run or when schema changes.
     """
     # Import all models to ensure they're registered
-    from . import product, brand  # noqa: F401
+    from . import product, brand, user, interaction, delivery  # noqa: F401
 
     Base.metadata.create_all(engine)
 
