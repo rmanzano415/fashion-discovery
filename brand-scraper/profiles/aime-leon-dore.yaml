@@ -1,0 +1,89 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# AIME LEON DORE BRAND PROFILE
+# ═══════════════════════════════════════════════════════════════════════════
+# New York-based lifestyle brand blending sportswear with luxury
+# Website: https://www.aimeleondore.com (Shopify store)
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ───────────────────────────────────────────────────────────────────────────
+# BASIC INFO
+# ───────────────────────────────────────────────────────────────────────────
+
+name: "Aimé Leon Dore"
+slug: "aime-leon-dore"
+base_url: "https://www.aimeleondore.com"
+
+# ───────────────────────────────────────────────────────────────────────────
+# SCRAPER CONFIGURATION
+# ───────────────────────────────────────────────────────────────────────────
+
+scraper_type: "shopify"
+currency: "USD"
+
+# Shopify API settings
+use_json_api: true
+products_per_page: 250
+max_pages: 15
+
+# Collections to scrape (empty = all products via /products.json)
+# Note: Collection-specific endpoints may be blocked by the store
+collections: []
+
+# ───────────────────────────────────────────────────────────────────────────
+# GENDER DETECTION
+# ───────────────────────────────────────────────────────────────────────────
+
+gender_detection:
+  # URL patterns
+  url_patterns:
+    mens:
+      - "/mens"
+      - "/men/"
+      - "/man/"
+    womens:
+      - "/womens"
+      - "/women/"
+      - "/woman/"
+    unisex:
+      - "/unisex"
+      - "/all"
+
+  # Title keywords
+  title_keywords:
+    mens:
+      - "men's"
+      - "mens"
+    womens:
+      - "women's"
+      - "womens"
+
+  # Tag mappings
+  tag_mappings:
+    mens:
+      - "mens"
+      - "men"
+      - "male"
+    womens:
+      - "womens"
+      - "women"
+      - "female"
+    unisex:
+      - "unisex"
+
+  # ALD is primarily menswear but has some unisex pieces
+  default: "mens"
+
+# ───────────────────────────────────────────────────────────────────────────
+# BRAND METADATA
+# ───────────────────────────────────────────────────────────────────────────
+
+description: "New York lifestyle brand blending sportswear heritage with luxury sensibility"
+logo_url: "https://www.aimeleondore.com/cdn/shop/files/ald-logo.png"
+country: "USA"
+
+brand_tags:
+  - "streetwear"
+  - "luxury"
+  - "sportswear"
+  - "contemporary"
+  - "american"

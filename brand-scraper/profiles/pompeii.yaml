@@ -1,0 +1,96 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# POMPEII BRAND PROFILE
+# ═══════════════════════════════════════════════════════════════════════════
+# Spanish sneaker brand known for minimalist design and sustainable materials
+# Website: https://www.pompeii-brand.com (Shopify store)
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ───────────────────────────────────────────────────────────────────────────
+# BASIC INFO
+# ───────────────────────────────────────────────────────────────────────────
+
+name: "Pompeii"
+slug: "pompeii"
+base_url: "https://www.pompeii-brand.com"
+
+# ───────────────────────────────────────────────────────────────────────────
+# SCRAPER CONFIGURATION
+# ───────────────────────────────────────────────────────────────────────────
+
+scraper_type: "shopify"
+currency: "EUR"
+
+# Shopify API settings
+use_json_api: true
+products_per_page: 250
+max_pages: 10
+
+# Collections to scrape (empty = all products)
+# Pompeii organizes by product type
+collections:
+  - "sneakers"
+  - "apparel"
+  - "accessories"
+
+# ───────────────────────────────────────────────────────────────────────────
+# GENDER DETECTION
+# ───────────────────────────────────────────────────────────────────────────
+
+gender_detection:
+  # URL patterns
+  url_patterns:
+    mens:
+      - "/hombre"
+      - "/men"
+      - "/man"
+    womens:
+      - "/mujer"
+      - "/women"
+      - "/woman"
+    unisex:
+      - "/unisex"
+
+  # Title keywords (Spanish and English)
+  title_keywords:
+    mens:
+      - "hombre"
+      - "men's"
+      - "mens"
+      - "man"
+    womens:
+      - "mujer"
+      - "women's"
+      - "womens"
+      - "woman"
+
+  # Tag mappings
+  tag_mappings:
+    mens:
+      - "hombre"
+      - "men"
+      - "male"
+    womens:
+      - "mujer"
+      - "women"
+      - "female"
+    unisex:
+      - "unisex"
+      - "all-gender"
+
+  # Pompeii sneakers are typically unisex
+  default: "unisex"
+
+# ───────────────────────────────────────────────────────────────────────────
+# BRAND METADATA
+# ───────────────────────────────────────────────────────────────────────────
+
+description: "Spanish sneaker brand focused on minimalist design and sustainable production"
+logo_url: "https://www.pompeii-brand.com/cdn/shop/files/pompeii-logo.png"
+country: "Spain"
+
+brand_tags:
+  - "sneakers"
+  - "sustainable"
+  - "minimalist"
+  - "contemporary"
+  - "european"

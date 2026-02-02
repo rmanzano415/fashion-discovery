@@ -1,0 +1,30 @@
+# Core scraping
+beautifulsoup4>=4.12.0
+requests>=2.31.0
+lxml>=5.0.0
+
+# For JavaScript-heavy sites
+playwright>=1.40.0
+
+# Database
+sqlalchemy>=2.0.0
+
+# Configuration
+pyyaml>=6.0.0
+
+# Scheduling
+apscheduler>=3.10.0
+
+# Utilities
+python-dotenv>=1.0.0
+tenacity>=8.2.0  # Retry logic
+fake-useragent>=1.4.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+responses>=0.24.0  # Mock HTTP responses
+
+# Development
+black>=23.0.0
+flake8>=6.1.0

@@ -1,0 +1,156 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# BRAND PROFILE TEMPLATE
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Use this template to add new brands to the scraper.
+# Copy this file and rename it to {brand-slug}.yaml
+#
+# Required fields are marked with [REQUIRED]
+# Optional fields have default values shown
+#
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ───────────────────────────────────────────────────────────────────────────
+# BASIC INFO [REQUIRED]
+# ───────────────────────────────────────────────────────────────────────────
+
+name: "Brand Name"                    # Display name
+slug: "brand-name"                    # URL-safe identifier (lowercase, hyphens)
+base_url: "https://www.brandname.com" # Homepage URL
+
+# ───────────────────────────────────────────────────────────────────────────
+# SCRAPER CONFIGURATION
+# ───────────────────────────────────────────────────────────────────────────
+
+# Scraper type: "shopify" or "generic"
+# - shopify: Uses Shopify's JSON API (recommended for Shopify stores)
+# - generic: Uses CSS selectors (for custom sites)
+scraper_type: "shopify"
+
+# Currency code
+currency: "USD"
+
+# ───────────────────────────────────────────────────────────────────────────
+# SHOPIFY-SPECIFIC OPTIONS (only used if scraper_type: "shopify")
+# ───────────────────────────────────────────────────────────────────────────
+
+# Whether to use the /products.json API (recommended)
+use_json_api: true
+
+# Specific collections to scrape (empty = all products)
+# Collections are URL handles, e.g., "new-arrivals", "mens", "sale"
+collections: []
+#  - "new-arrivals"
+#  - "mens"
+#  - "womens"
+
+# Products per page (max 250 for Shopify)
+products_per_page: 250
+
+# Maximum pages to scrape per collection
+max_pages: 10
+
+# ───────────────────────────────────────────────────────────────────────────
+# GENERIC SCRAPER OPTIONS (only used if scraper_type: "generic")
+# ───────────────────────────────────────────────────────────────────────────
+
+# Pages to scrape for product listings
+listing_urls:
+  - "/collections/all"
+  # - "/shop"
+  # - "/products"
+
+# CSS selectors for extracting product data
+selectors:
+  # Container for each product [REQUIRED for generic]
+  product_card: ".product-card"
+
+  # Product link (usually an <a> tag)
+  link: "a.product-link"
+
+  # Product title
+  title: ".product-title"
+
+  # Current price
+  price: ".product-price"
+
+  # Original/compare-at price (for sale items)
+  original_price: ".compare-price"
+
+  # Product image
+  image: "img.product-image"
+
+  # Category (optional)
+  category: ".product-category"
+
+  # Product ID (optional - falls back to URL)
+  id: "[data-product-id]"
+
+# Pagination settings
+pagination:
+  type: "query"          # "query" (?page=2) or "path" (/page/2)
+  param: "page"          # Parameter name
+  next_selector: ".pagination-next"  # Selector for "next" button
+
+# ───────────────────────────────────────────────────────────────────────────
+# GENDER DETECTION
+# ───────────────────────────────────────────────────────────────────────────
+
+gender_detection:
+  # URL patterns that indicate gender
+  url_patterns:
+    mens:
+      - "/mens"
+      - "/men/"
+      - "/male"
+      - "/man/"
+    womens:
+      - "/womens"
+      - "/women/"
+      - "/female"
+      - "/woman/"
+    unisex:
+      - "/unisex"
+      - "/all-gender"
+
+  # Keywords in product title
+  title_keywords:
+    mens:
+      - "men's"
+      - "mens"
+      - "male"
+    womens:
+      - "women's"
+      - "womens"
+      - "female"
+
+  # Tags that indicate gender
+  tag_mappings:
+    mens:
+      - "mens"
+      - "men"
+      - "male"
+    womens:
+      - "womens"
+      - "women"
+      - "female"
+    unisex:
+      - "unisex"
+
+  # Default if no gender detected
+  default: null  # or "unisex"
+
+# ───────────────────────────────────────────────────────────────────────────
+# OPTIONAL METADATA
+# ───────────────────────────────────────────────────────────────────────────
+
+description: "Brief brand description"
+logo_url: "https://www.brandname.com/logo.png"
+country: "USA"
+
+# Tags for categorization
+brand_tags:
+  - "streetwear"
+  - "luxury"
+  # - "sustainable"
+  # - "contemporary"

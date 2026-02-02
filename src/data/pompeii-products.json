@@ -1,0 +1,852 @@
+[
+  {
+    "id": "pompeii-1",
+    "name": "Vintage Indigo Denim Chore Jacket",
+    "price": "$161.00",
+    "priceNumeric": 161,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/VINTAGEINDIGODENIMCHOREJACKET_01.jpg?v=1769089791",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/VINTAGEINDIGODENIMCHOREJACKET_02.jpg?v=1769089800",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/VINTAGEINDIGODENIMCHOREJACKET_03.jpg?v=1769089811"
+    ],
+    "url": "https://pompeiibrand.com/products/vintage-indigo-denim-chore-jacket",
+    "brand": "Pompeii",
+    "category": "Outerwear",
+    "description": "Denim chore jacket in piece-dyed cotton corduroy with patch pockets. 100% cotton. Made in Portugal.",
+    "colors": ["Indigo"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-2",
+    "name": "Truffle Technical Harrington",
+    "price": "$204.00",
+    "priceNumeric": 204,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/TRUFFLETECHNICALHARRINGTON_01.jpg?v=1769089678",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/TRUFFLETECHNICALHARRINGTON_02.jpg?v=1769089685",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/TRUFFLETECHNICALHARRINGTON_03.jpg?v=1769089696"
+    ],
+    "url": "https://pompeiibrand.com/products/truffle-technical-harrington",
+    "brand": "Pompeii",
+    "category": "Outerwear",
+    "description": "Medium-weight windbreaker with water-repellent exterior and mesh lining for breathability. 100% polyester.",
+    "colors": ["Truffle"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-3",
+    "name": "Powder Pink Canvas Field Jacket",
+    "price": "$204.00",
+    "priceNumeric": 204,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/POWDERPINKCANVASFIELDJACKET_01.jpg?v=1769089517",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/POWDERPINKCANVASFIELDJACKET_02.jpg?v=1769089524",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/POWDERPINKCANVASFIELDJACKET_03.jpg?v=1769089534"
+    ],
+    "url": "https://pompeiibrand.com/products/powder-pink-canvas-field-jacket",
+    "brand": "Pompeii",
+    "category": "Outerwear",
+    "description": "Classic harrington jacket in cotton/polyester with water-repellent treatment and checked cotton lining. Made in Portugal.",
+    "colors": ["Powder Pink"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-4",
+    "name": "Ochre Technical Harrington",
+    "price": "$204.00",
+    "priceNumeric": 204,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/OCHRETECHNICALHARRINGTON_01.jpg?v=1769089424",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/OCHRETECHNICALHARRINGTON_02.jpg?v=1769089432",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/OCHRETECHNICALHARRINGTON_03.jpg?v=1769089444"
+    ],
+    "url": "https://pompeiibrand.com/products/ochre-technical-harrington",
+    "brand": "Pompeii",
+    "category": "Outerwear",
+    "description": "Classic harrington with water-repellent cotton/polyester blend and checked cotton lining. Manufactured in Portugal.",
+    "colors": ["Ochre"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-5",
+    "name": "Navy Technical Harrington",
+    "price": "$204.00",
+    "priceNumeric": 204,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/NAVYTECHNICALHARRINGTON_01.jpg?v=1769089260",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/NAVYTECHNICALHARRINGTON_02.jpg?v=1769089268",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/NAVYTECHNICALHARRINGTON_03.jpg?v=1769089278"
+    ],
+    "url": "https://pompeiibrand.com/products/navy-technical-harrington",
+    "brand": "Pompeii",
+    "category": "Outerwear",
+    "description": "Harrington-style jacket featuring water-repellent cotton/polyester exterior with checked cotton lining. Crafted in Portugal.",
+    "colors": ["Navy"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-6",
+    "name": "Striped Navy Track Suit",
+    "price": "$204.00",
+    "priceNumeric": 204,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/STRIPEDNAVYTRACKSUIT_01.jpg?v=1769026796",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/STRIPEDNAVYTRACKSUIT_02.jpg?v=1769026803",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/STRIPEDNAVYTRACKSUIT_03.jpg?v=1769026812"
+    ],
+    "url": "https://pompeiibrand.com/products/striped-navy-track-suit",
+    "brand": "Pompeii",
+    "category": "Knitwear",
+    "description": "Knit polo in wool/polyamide blend with relaxed cut and mid-gauge smooth knit. Made in Spain.",
+    "colors": ["Navy"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-7",
+    "name": "Argyle Ochre Cardigan Polo",
+    "price": "$204.00",
+    "priceNumeric": 204,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ARGYLEOCHRECARDIGANPOLO_01.jpg?v=1769026686",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ARGYLEOCHRECARDIGANPOLO_02.jpg?v=1769026698",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ARGYLEOCHRECARDIGANPOLO_03.jpg?v=1769026709"
+    ],
+    "url": "https://pompeiibrand.com/products/argyle-ochre-cardigan-polo",
+    "brand": "Pompeii",
+    "category": "Knitwear",
+    "description": "Wool cardigan crafted in Portugal. 40% wool, 30% viscose, 25% polyamide, 5% cashmere.",
+    "colors": ["Ochre"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-8",
+    "name": "Rugby Brown Knit Polo",
+    "price": "$193.00",
+    "priceNumeric": 193,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/RUGBIBROWNKNITPOLO_01.jpg?v=1769026428",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/RUGBIBROWNKNITPOLO_02.jpg?v=1769026436",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/RUGBIBROWNKNITPOLO_03.jpg?v=1769026447"
+    ],
+    "url": "https://pompeiibrand.com/products/rugby-brown-knit-polo",
+    "brand": "Pompeii",
+    "category": "Knitwear",
+    "description": "Knit polo in wool/polyamide blend with relaxed fit and contrasting collar. Made in Spain.",
+    "colors": ["Brown"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-9",
+    "name": "Higby Suede Hydro Grey",
+    "price": "$51.00",
+    "priceNumeric": 51,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/HIGBYSUEDEHYDROGREY_01.jpg?v=1764847393",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/HIGBYSUEDEHYDROGREY_02.jpg?v=1764847401",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/HIGBYSUEDEHYDROGREY_03.jpg?v=1764847407"
+    ],
+    "url": "https://pompeiibrand.com/products/higby-suede-hydro-grey",
+    "brand": "Pompeii",
+    "category": "Sneakers",
+    "description": "Iconic vulcanized sneaker in water-repellent suede with flexible rubber sole. Made in Spain.",
+    "colors": ["Grey"],
+    "sizes": ["40", "41", "42", "43", "44", "45", "46", "47"]
+  },
+  {
+    "id": "pompeii-10",
+    "name": "Loose Stone Seersucker Trouser",
+    "price": "$53.00",
+    "priceNumeric": 53,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/LOOSESTONESEERSUCKERTROUSER_01.jpg?v=1750102704",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/LOOSESTONESEERSUCKERTROUSER_02.jpg?v=1750102704",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/LOOSESTONESEERSUCKERTROUSER_03.jpg?v=1750102704"
+    ],
+    "url": "https://pompeiibrand.com/products/loose-stone-seersucker-trouser",
+    "brand": "Pompeii",
+    "category": "Trousers",
+    "description": "Double-pleat cotton seersucker trousers with balloon fit and elastic waistband. Made in Portugal.",
+    "colors": ["Stone"],
+    "sizes": ["38", "40", "42", "44", "46"]
+  },
+  {
+    "id": "pompeii-11",
+    "name": "Pompeii x Reternity Denim Dirt Blue",
+    "price": "$58.00",
+    "priceNumeric": 58,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/JEANSRETERNITY_01.jpg?v=1750102630",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/JEANSRETERNITY_04.jpg?v=1750102631",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/JEANSRETERNITY_02.jpg?v=1750102631"
+    ],
+    "url": "https://pompeiibrand.com/products/pompeii-x-reternity-denim-dirt-blue",
+    "brand": "Pompeii",
+    "category": "Trousers",
+    "description": "Baggy-cut denim pants with acid wash in collaboration with Reternity. 100% cotton.",
+    "colors": ["Dirt Blue"],
+    "sizes": ["S", "M", "L", "XL", "XXL"]
+  },
+  {
+    "id": "pompeii-12",
+    "name": "Mineral Zipper Sweatshirt",
+    "price": "$42.00",
+    "priceNumeric": 42,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MINERALZIPPER_01.jpg?v=1750103261",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MINERALZIPPER_03.jpg?v=1750103261",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MINERALZIPPER_02.jpg?v=1750103261"
+    ],
+    "url": "https://pompeiibrand.com/products/mineral-zipper",
+    "brand": "Pompeii",
+    "category": "Sweatshirts",
+    "description": "Quarter-zip sweatshirt with metal pull detail in ribbed cotton. 280/300 GSM. 100% cotton.",
+    "colors": ["Mineral"],
+    "sizes": ["S", "M", "L", "XL", "XXL"]
+  },
+  {
+    "id": "pompeii-13",
+    "name": "Elan Pippa Leather Ecru Burgundy",
+    "price": "$38.00",
+    "priceNumeric": 38,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ELANPIPPALEATHERECRUBURGUNDY_01_a4bc7696-6cdf-468f-9b29-7609bd55882e.jpg?v=1750103171",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ELANPIPPALEATHERECRUBURGUNDY_02_0f7a184e-64b5-4eb1-8841-6a0f85e56d1f.jpg?v=1750103171",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ELANPIPPALEATHERECRUBURGUNDY_04_b03c69bb-de82-49b7-9cc5-43c5a646e607.jpg?v=1750103171"
+    ],
+    "url": "https://pompeiibrand.com/products/elan-pippa-leather-ecru-burgundy-wo",
+    "brand": "Pompeii",
+    "category": "Sneakers",
+    "description": "80s-inspired basketball sneaker with napa leather upper and rubber sole. Leather Working Group certified.",
+    "colors": ["Ecru", "Burgundy"],
+    "sizes": ["36", "37", "38", "39", "40", "41"]
+  },
+  {
+    "id": "pompeii-14",
+    "name": "Miami Dolphins Football Jersey",
+    "price": "$75.00",
+    "priceNumeric": 75,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MIAMIFOOTBALLSHIRT_01.jpg?v=1762846860",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MIAMIFOOTBALLSHIRT_02.jpg?v=1762873932",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MIAMIFOOTBALLSHIRT_03.jpg?v=1762873932"
+    ],
+    "url": "https://pompeiibrand.com/products/miami-dolphins-football-jersey",
+    "brand": "Pompeii",
+    "category": "Tops",
+    "description": "Football-style t-shirt in collaboration with Miami Dolphins. Relaxed silhouette with athletic details. 100% polyester.",
+    "colors": ["Aqua", "Orange"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-15",
+    "name": "Waffle Off White Socks",
+    "price": "$19.00",
+    "priceNumeric": 19,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/WAFLEOFFWHITESOCKS_02.jpg?v=1767808564",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/WAFLEOFFWHITESOCKS_03.jpg?v=1767808575",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/WAFLEOFFWHITESOCKS_04.jpg?v=1767808582"
+    ],
+    "url": "https://pompeiibrand.com/products/wafle-off-white-socks",
+    "brand": "Pompeii",
+    "category": "Accessories",
+    "description": "Mid-calf ribbed knit socks. 80% cotton, 14% polyamide, 6% elastane.",
+    "colors": ["Off White"],
+    "sizes": ["One Size"]
+  },
+  {
+    "id": "pompeii-16",
+    "name": "Waffle Navy Socks",
+    "price": "$19.00",
+    "priceNumeric": 19,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/WAFLENAVYSOCKS_02.jpg?v=1767808445",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/WAFLENAVYSOCKS_03.jpg?v=1767808451",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/WAFLENAVYSOCKS_04.jpg?v=1767808455"
+    ],
+    "url": "https://pompeiibrand.com/products/wafle-navy-socks",
+    "brand": "Pompeii",
+    "category": "Accessories",
+    "description": "Mid-calf ribbed knit socks in navy. 80% cotton, 14% polyamide, 6% elastane.",
+    "colors": ["Navy"],
+    "sizes": ["One Size"]
+  },
+  {
+    "id": "pompeii-17",
+    "name": "Tie Dye Grape Socks",
+    "price": "$19.00",
+    "priceNumeric": 19,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/TYEDYEWINESOCKS_02.jpg?v=1767808330",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/TYEDYEWINESOCKS_03.jpg?v=1767808337",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/TYEDYEWINESOCKS_04.jpg?v=1767808345"
+    ],
+    "url": "https://pompeiibrand.com/products/tie-dye-grape-socks",
+    "brand": "Pompeii",
+    "category": "Accessories",
+    "description": "Mid-calf ribbed knit socks with tie-dye pattern. 80% cotton, 14% polyamide, 6% elastane.",
+    "colors": ["Grape"],
+    "sizes": ["One Size"]
+  },
+  {
+    "id": "pompeii-18",
+    "name": "Tie Dye Cypress Socks",
+    "price": "$19.00",
+    "priceNumeric": 19,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/TYEDYEGREENSOCKS_02.jpg?v=1767808198",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/TYEDYEGREENSOCKS_03.jpg?v=1767808209",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/TYEDYEGREENSOCKS_04.jpg?v=1767808219"
+    ],
+    "url": "https://pompeiibrand.com/products/tie-dye-cypress-socks",
+    "brand": "Pompeii",
+    "category": "Accessories",
+    "description": "Mid-calf ribbed knit socks with tie-dye coloring. 80% cotton, 14% polyamide, 6% elastane.",
+    "colors": ["Cypress Green"],
+    "sizes": ["One Size"]
+  },
+  {
+    "id": "pompeii-19",
+    "name": "Multi Stripes Taupe Socks",
+    "price": "$19.00",
+    "priceNumeric": 19,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MULTISTRIPESTAUPESOCKS_02.jpg?v=1767808026",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MULTISTRIPESTAUPESOCKS_03.jpg?v=1767808036",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MULTISTRIPESTAUPESOCKS_04_13cf1bc7-cf0e-4329-bd16-d667314f768f.jpg?v=1767808057"
+    ],
+    "url": "https://pompeiibrand.com/products/multi-stripes-taupe",
+    "brand": "Pompeii",
+    "category": "Accessories",
+    "description": "Mid-calf ribbed knit socks with multi-stripe pattern in taupe tones.",
+    "colors": ["Taupe"],
+    "sizes": ["One Size"]
+  },
+  {
+    "id": "pompeii-20",
+    "name": "Multi Stripes Grey Socks",
+    "price": "$19.00",
+    "priceNumeric": 19,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MULTISTRIPESGREYSOCKS_02.jpg?v=1767807875",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MULTISTRIPESGREYSOCKS_03.jpg?v=1767807884",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MULTISTRIPESGREYSOCKS_04.jpg?v=1767807894"
+    ],
+    "url": "https://pompeiibrand.com/products/multi-stripes-grey",
+    "brand": "Pompeii",
+    "category": "Accessories",
+    "description": "Mid-calf ribbed knit socks featuring multi-stripe design in grey.",
+    "colors": ["Grey"],
+    "sizes": ["One Size"]
+  },
+  {
+    "id": "pompeii-21",
+    "name": "Bowen Leather Wine",
+    "price": "$127.00",
+    "priceNumeric": 127,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BOWENLEATHERWINE_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BOWENLEATHERWINE_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BOWENLEATHERWINE_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/bowen-leather-wine",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Derby flat shoe in soft napa leather crafted in Portugal. Ballet-inspired elegance with lightweight flexible structure.",
+    "colors": ["Wine"],
+    "sizes": ["36", "37", "38", "39", "40"]
+  },
+  {
+    "id": "pompeii-22",
+    "name": "Bowen Leather White",
+    "price": "$90.00",
+    "priceNumeric": 90,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BOWENLEATHERWHITE_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BOWENLEATHERWHITE_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BOWENLEATHERWHITE_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/bowen-leather-white",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Derby flat in soft napa leather manufactured in Portugal. Gathered vamp evokes ballet aesthetics.",
+    "colors": ["White"],
+    "sizes": ["36", "37", "38", "39", "40"]
+  },
+  {
+    "id": "pompeii-23",
+    "name": "Bristol V2 Redish",
+    "price": "$75.00",
+    "priceNumeric": 75,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BRISTOLV2REDISH_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BRISTOLV2REDISH_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BRISTOLV2REDISH_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/bristol-v2-redish",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Moc toe shoes crafted in Spain from premium napa with leather lining and Vibram rubber sole.",
+    "colors": ["Redish"],
+    "sizes": ["40", "41", "42", "43", "44", "45", "46"]
+  },
+  {
+    "id": "pompeii-24",
+    "name": "Tudor Olive",
+    "price": "$96.00",
+    "priceNumeric": 96,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/TUDORGREY_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/TUDORGREY_03.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/TUDORGREY_04.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/tudor-olive",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Mid-calf nautical boots crafted in Spain from LWG-certified nubuck. Ultra-lightweight XL EXTRALIGHT sole.",
+    "colors": ["Olive"],
+    "sizes": ["40", "41", "42", "43", "44", "45", "46"]
+  },
+  {
+    "id": "pompeii-25",
+    "name": "Vega T-Bar Leather Black",
+    "price": "$127.00",
+    "priceNumeric": 127,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/VEGAT-BARLEATHERBLACK_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/VEGAT-BARLEATHERBLACK_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/VEGAT-BARLEATHERBLACK_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/vega-t-bar-leather-black",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Hand-crafted T-bar loafer in Spanish-made bovine napa. Slightly squared toe with full leather sole.",
+    "colors": ["Black"],
+    "sizes": ["36", "37", "38", "39", "40"]
+  },
+  {
+    "id": "pompeii-26",
+    "name": "Modena Leather Tassel Black",
+    "price": "$105.00",
+    "priceNumeric": 105,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MODENALEATHERTASSELBLACK_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MODENALEATHERTASSELBLACK_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/MODENALEATHERTASSELBLACK_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/modena-leather-tassel-black",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Tassel loafer in bovine napa with leather lining and Vibram rubber sole. Made in Spain.",
+    "colors": ["Black"],
+    "sizes": ["40", "41", "42", "43", "44", "45", "46"]
+  },
+  {
+    "id": "pompeii-27",
+    "name": "Bristol V2 Bison",
+    "price": "$75.00",
+    "priceNumeric": 75,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BRISTOLv2BISON_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BRISTOLv2BISON_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BRISTOLv2BISON_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/bristol-v2-bison",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Suede moc toe shoes manufactured in Spain with quality suede uppers and Vibram rubber sole.",
+    "colors": ["Bison"],
+    "sizes": ["40", "41", "42", "43", "44", "45", "46"]
+  },
+  {
+    "id": "pompeii-28",
+    "name": "Bristol V2 Khaki",
+    "price": "$75.00",
+    "priceNumeric": 75,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BRISTOLv2KHAKI_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BRISTOLv2KHAKI_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BRISTOLv2KHAKI_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/bristol-v2-khaki",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Moc toe silhouette crafted in Spain using premium suede with leather-lined interior.",
+    "colors": ["Khaki"],
+    "sizes": ["40", "41", "42", "43", "44", "45", "46"]
+  },
+  {
+    "id": "pompeii-29",
+    "name": "Budd Fog Chelsea Boot",
+    "price": "$120.00",
+    "priceNumeric": 120,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BUDDBROWN_01_1.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BUDDBROWN_02_1.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BUDDBROWN_03_1.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/budd-fog",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Chelsea boots crafted in Portugal with contemporary character. Clean nubuck silhouette with Vibram sole.",
+    "colors": ["Fog"],
+    "sizes": ["36", "37", "38", "39", "40"]
+  },
+  {
+    "id": "pompeii-30",
+    "name": "Budd Orion Chelsea Boot",
+    "price": "$90.00",
+    "priceNumeric": 90,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BUDDGREY_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BUDDGREY_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BUDDGREY_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/budd-orion-1",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Chelsea boots produced in Portugal with contemporary reinterpretation. Vibram outdoor-inspired sole.",
+    "colors": ["Orion Grey"],
+    "sizes": ["40", "41", "42", "43", "44", "45", "46", "47"]
+  },
+  {
+    "id": "pompeii-31",
+    "name": "Check Wool Chore Jacket",
+    "price": "$90.00",
+    "priceNumeric": 90,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/CHECKWOOLCHOREJACKET_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/DIA03-LOOKBOOK1883_1.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/CHECKWOOLCHOREJACKET_02.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/check-wool-chore-jacket",
+    "brand": "Pompeii",
+    "category": "Outerwear",
+    "description": "Jacket in wool/polyester microcheck with patch pockets. Made in Portugal. 60% wool, 40% polyester.",
+    "colors": ["Check"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-32",
+    "name": "Charcoal Grey Waffle Cord Chore Jacket",
+    "price": "$77.00",
+    "priceNumeric": 77,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/DARKGREYJACKET_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/DARKGREYJACKET_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/DARKGREYJACKET_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/charcoal-grey-waffle-cord-chore-jacket",
+    "brand": "Pompeii",
+    "category": "Outerwear",
+    "description": "Jacket in piece-dyed cotton corduroy with patch pockets and button cuffs. Made in Portugal. 100% cotton.",
+    "colors": ["Charcoal Grey"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-33",
+    "name": "Ariete Suede Hairy Caramel",
+    "price": "$193.00",
+    "priceNumeric": 193,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ARIETESUEDEHAIRY_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ARIETESUEDEHAIRY_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ARIETESUEDEHAIRY_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/ariete-suede-hairy-caramel",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Premium suede loafer with hairy texture finish. Crafted in Spain with attention to detail.",
+    "colors": ["Caramel"],
+    "sizes": ["40", "41", "42", "43", "44", "45", "46"]
+  },
+  {
+    "id": "pompeii-34",
+    "name": "Aero Suede Brown",
+    "price": "$85.00",
+    "priceNumeric": 85,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AEROSUEDEMOSS_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AEROSUEDEMOSS_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AEROSUEDEMOSS_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/aero-suede-brown",
+    "brand": "Pompeii",
+    "category": "Sneakers",
+    "description": "Classic suede sneaker with vulcanized sole. Made in Spain with premium materials.",
+    "colors": ["Brown"],
+    "sizes": ["40", "41", "42", "43", "44", "45", "46"]
+  },
+  {
+    "id": "pompeii-35",
+    "name": "Aero Suede Kombu",
+    "price": "$85.00",
+    "priceNumeric": 85,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AEROSUEDEKOMBU_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AEROSUEDEKOMBU_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AEROSUEDEKOMBU_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/aero-suede-kombu",
+    "brand": "Pompeii",
+    "category": "Sneakers",
+    "description": "Classic suede sneaker with vulcanized sole. Made in Spain with premium materials.",
+    "colors": ["Kombu Green"],
+    "sizes": ["40", "41", "42", "43", "44", "45", "46"]
+  },
+  {
+    "id": "pompeii-36",
+    "name": "Aero Suede Moss",
+    "price": "$85.00",
+    "priceNumeric": 85,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AEROSUEDEMOSS_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AEROSUEDEMOSS_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AEROSUEDEMOSS_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/aero-suede-moss",
+    "brand": "Pompeii",
+    "category": "Sneakers",
+    "description": "Classic suede sneaker with vulcanized sole. Made in Spain with premium materials.",
+    "colors": ["Moss"],
+    "sizes": ["40", "41", "42", "43", "44", "45", "46"]
+  },
+  {
+    "id": "pompeii-37",
+    "name": "Ada Cherry Slide",
+    "price": "$92.00",
+    "priceNumeric": 92,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADACHERRY_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADACHERRY_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADACHERRY_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/ada-cherry",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Premium leather slide sandal with comfortable footbed. Made in Spain.",
+    "colors": ["Cherry"],
+    "sizes": ["36", "37", "38", "39", "40", "41", "42"]
+  },
+  {
+    "id": "pompeii-38",
+    "name": "Ada Slide Black",
+    "price": "$96.00",
+    "priceNumeric": 96,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADASLIDEBLACK_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADASLIDEBLACK_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADASLIDEBLACK_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/ada-slide-black",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Premium leather slide sandal with comfortable footbed. Made in Spain.",
+    "colors": ["Black"],
+    "sizes": ["36", "37", "38", "39", "40", "41", "42"]
+  },
+  {
+    "id": "pompeii-39",
+    "name": "Ada Slide Blue",
+    "price": "$96.00",
+    "priceNumeric": 96,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADASLIDEBLUE_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADASLIDEBLUE_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADASLIDEBLUE_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/ada-slide-blue",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Premium leather slide sandal with comfortable footbed. Made in Spain.",
+    "colors": ["Blue"],
+    "sizes": ["36", "37", "38", "39", "40", "41", "42"]
+  },
+  {
+    "id": "pompeii-40",
+    "name": "Ada Slide Ocre",
+    "price": "$96.00",
+    "priceNumeric": 96,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADASLIDEOCRE_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADASLIDEOCRE_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADASLIDEOCRE_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/ada-slide-ocre",
+    "brand": "Pompeii",
+    "category": "Footwear",
+    "description": "Premium leather slide sandal with comfortable footbed. Made in Spain.",
+    "colors": ["Ocre"],
+    "sizes": ["36", "37", "38", "39", "40", "41", "42"]
+  },
+  {
+    "id": "pompeii-41",
+    "name": "Arrow Burgundy Socks",
+    "price": "$14.00",
+    "priceNumeric": 14,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/products/32.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/products/33.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/products/35.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/arrow-burgundy-1",
+    "brand": "Pompeii",
+    "category": "Accessories",
+    "description": "Mid-calf sock with contrast motif patterns. 80% cotton, 16% polyamide, 4% elastane.",
+    "colors": ["Burgundy"],
+    "sizes": ["One Size"]
+  },
+  {
+    "id": "pompeii-42",
+    "name": "Arrow Tundra Socks",
+    "price": "$14.00",
+    "priceNumeric": 14,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ARROWTUNDRA_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ARROWTUNDRA_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ARROWTUNDRA_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/arrow-tundra",
+    "brand": "Pompeii",
+    "category": "Accessories",
+    "description": "Mid-calf sock with contrast motif patterns. 80% cotton, 16% polyamide, 4% elastane.",
+    "colors": ["Tundra"],
+    "sizes": ["One Size"]
+  },
+  {
+    "id": "pompeii-43",
+    "name": "Arriere Football Jersey",
+    "price": "$67.00",
+    "priceNumeric": 67,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ARRIEREFOOTBALLJERSEY_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ARRIEREFOOTBALLJERSEY_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ARRIEREFOOTBALLJERSEY_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/arriere-football-jersey",
+    "brand": "Pompeii",
+    "category": "Tops",
+    "description": "Football-inspired jersey with athletic details. Relaxed fit with breathable fabric.",
+    "colors": ["Multi"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-44",
+    "name": "Away Shirt Pompeii CF",
+    "price": "$107.00",
+    "priceNumeric": 107,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AWAYSHIRTPOMPEIICF_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AWAYSHIRTPOMPEIICF_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AWAYSHIRTPOMPEIICF_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/away-shirt-pompeii-cf",
+    "brand": "Pompeii",
+    "category": "Tops",
+    "description": "Away football shirt for Pompeii CF. Premium polyester construction with embroidered details.",
+    "colors": ["Away"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-45",
+    "name": "Beige Puffer Jacket",
+    "price": "$76.00",
+    "priceNumeric": 76,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BEIGEPUFFERJACKET_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BEIGEPUFFERJACKET_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/BEIGEPUFFERJACKET_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/beige-puffer-jacket",
+    "brand": "Pompeii",
+    "category": "Outerwear",
+    "description": "Lightweight puffer jacket with synthetic insulation. Water-resistant exterior.",
+    "colors": ["Beige"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-46",
+    "name": "Amber Emilio Tee",
+    "price": "$29.00",
+    "priceNumeric": 29,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AMBEREMILIOTEE_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AMBEREMILIOTEE_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AMBEREMILIOTEE_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/amber-emilio-tee",
+    "brand": "Pompeii",
+    "category": "Tops",
+    "description": "Premium cotton t-shirt with relaxed fit and graphic print. 100% cotton.",
+    "colors": ["Amber"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-47",
+    "name": "Auto Repair Amber Regular Tee",
+    "price": "$29.00",
+    "priceNumeric": 29,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AUTOREPAIRAMBER_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AUTOREPAIRAMBER_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AUTOREPAIRAMBER_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/auto-repair-amber-regular-tee",
+    "brand": "Pompeii",
+    "category": "Tops",
+    "description": "Premium cotton t-shirt with auto repair graphic. Relaxed fit. 100% cotton.",
+    "colors": ["Amber"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-48",
+    "name": "Auto Repair Off White Regular Tee",
+    "price": "$24.00",
+    "priceNumeric": 24,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AUTOREPAIROFFWHITE_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AUTOREPAIROFFWHITE_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/AUTOREPAIROFFWHITE_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/auto-repair-off-white-regular-tee",
+    "brand": "Pompeii",
+    "category": "Tops",
+    "description": "Premium cotton t-shirt with auto repair graphic. Relaxed fit. 100% cotton.",
+    "colors": ["Off White"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-49",
+    "name": "AD Ceuta FC Long Sleeve Tee",
+    "price": "$96.00",
+    "priceNumeric": 96,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADCEUTAFCLONGSLEEVE_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADCEUTAFCLONGSLEEVE_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADCEUTAFCLONGSLEEVE_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/ad-ceuta-fc-long-sleeve-tee",
+    "brand": "Pompeii",
+    "category": "Tops",
+    "description": "Long sleeve football tee in collaboration with AD Ceuta FC. Premium construction.",
+    "colors": ["Team Colors"],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "pompeii-50",
+    "name": "AD Ceuta FC Short Sleeve Tee",
+    "price": "$96.00",
+    "priceNumeric": 96,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADCEUTAFCSHORTSLEEVE_01.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADCEUTAFCSHORTSLEEVE_02.jpg",
+      "https://cdn.shopify.com/s/files/1/0003/6270/9002/files/ADCEUTAFCSHORTSLEEVE_03.jpg"
+    ],
+    "url": "https://pompeiibrand.com/products/ad-ceuta-fc-short-sleeve-tee",
+    "brand": "Pompeii",
+    "category": "Tops",
+    "description": "Short sleeve football tee in collaboration with AD Ceuta FC. Premium construction.",
+    "colors": ["Team Colors"],
+    "sizes": ["S", "M", "L", "XL"]
+  }
+]

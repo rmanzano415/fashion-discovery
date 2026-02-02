@@ -1,0 +1,105 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# PAS NORMAL STUDIOS BRAND PROFILE
+# ═══════════════════════════════════════════════════════════════════════════
+# Danish cycling apparel brand known for minimalist, performance-focused design
+# Website: https://www.pasnormalstudios.com (Headless Shopify with Next.js)
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ───────────────────────────────────────────────────────────────────────────
+# BASIC INFO
+# ───────────────────────────────────────────────────────────────────────────
+
+name: "Pas Normal Studios"
+slug: "pas-normal-studios"
+base_url: "https://www.pasnormalstudios.com"
+
+# ───────────────────────────────────────────────────────────────────────────
+# SCRAPER CONFIGURATION
+# ───────────────────────────────────────────────────────────────────────────
+
+# Uses headless Shopify (custom Next.js frontend with Shopify backend)
+# Standard /products.json API is not available
+# We scrape collection pages for URLs, then extract JSON-LD from product pages
+scraper_type: "headless_shopify"
+currency: "EUR"
+
+# Region prefix for URLs (eu, us, uk, etc.)
+# Using EU for European pricing
+region_prefix: "eu"
+
+# Maximum pages to scrape per collection
+max_pages: 5
+
+# Collections to scrape (cycling apparel categories)
+collections:
+  - "jerseys"
+  - "bibs"
+  - "base-layers"
+  - "jackets-gilets"
+  - "t-shirts"
+  - "sweatshirts-hoodies"
+  - "socks"
+  - "arm-leg-warmers"
+  - "helmets"
+  - "skinsuits"
+  - "casualwear"
+
+# Regex pattern for extracting product slugs from URLs
+product_url_pattern: "/products/([a-z0-9\\-]+)"
+
+# ───────────────────────────────────────────────────────────────────────────
+# GENDER DETECTION
+# ───────────────────────────────────────────────────────────────────────────
+
+gender_detection:
+  # URL patterns
+  url_patterns:
+    mens:
+      - "/mens-"
+      - "-mens-"
+    womens:
+      - "/womens-"
+      - "-womens-"
+    unisex:
+      - "/unisex"
+
+  # Title keywords
+  title_keywords:
+    mens:
+      - "men's"
+      - "mens"
+    womens:
+      - "women's"
+      - "womens"
+
+  # Tag mappings
+  tag_mappings:
+    mens:
+      - "mens"
+      - "men"
+      - "male"
+    womens:
+      - "womens"
+      - "women"
+      - "female"
+    unisex:
+      - "unisex"
+
+  # PNS products often include gender in name, default to unisex for accessories
+  default: "unisex"
+
+# ───────────────────────────────────────────────────────────────────────────
+# BRAND METADATA
+# ───────────────────────────────────────────────────────────────────────────
+
+description: "Danish cycling brand combining Scandinavian minimalism with high-performance athletic wear"
+logo_url: "https://www.pasnormalstudios.com/assets/pns-logo.svg"
+country: "Denmark"
+
+brand_tags:
+  - "cycling"
+  - "performance"
+  - "minimalist"
+  - "scandinavian"
+  - "premium"
+  - "athletic"
