@@ -63,44 +63,20 @@ def get_due_users(session) -> list:
 
 def curate_products(session, user: User) -> list:
     """
-    Select products matching a user's preferences.
+    Select products matching a user's preferences using the matching engine.
 
-    Filters by silhouette (gender) and followed brands, then picks
-    the newest in-stock items up to MAX_PRODUCTS_PER_DELIVERY.
+    Scores products on aesthetic/palette/vibe alignment, then applies
+    diversity rules for category and brand distribution.
     """
-    query = session.query(Product).filter(
-        Product.is_active == True,  # noqa: E712
-        Product.availability == "in_stock",
+    from matching.curator import curate_zine
+
+    zine = curate_zine(
+        user_id=user.id,
+        session=session,
+        max_products=MAX_PRODUCTS_PER_DELIVERY,
     )
 
-    # Filter by silhouette -> gender mapping
-    if user.silhouette == "menswear":
-        query = query.filter(Product.gender.in_(["mens", "unisex", None]))
-    elif user.silhouette == "womenswear":
-        query = query.filter(Product.gender.in_(["womens", "unisex", None]))
-
-    # Filter by followed brands if the user has any
-    followed = user.followed_brands or []
-    if followed:
-        from models.brand import Brand
-
-        brand_ids = (
-            session.query(Brand.id)
-            .filter(Brand.slug.in_(followed))
-            .all()
-        )
-        brand_id_list = [b.id for b in brand_ids]
-        if brand_id_list:
-            query = query.filter(Product.brand_id.in_(brand_id_list))
-
-    # Order by newest first, limit
-    products = (
-        query.order_by(Product.first_seen.desc())
-        .limit(MAX_PRODUCTS_PER_DELIVERY)
-        .all()
-    )
-
-    return products
+    return [rp.product for rp in zine.products]
 
 
 def send_delivery_email(user: User, products: list) -> None:

@@ -9,7 +9,7 @@ SQLAlchemy/SQLite backend.
 from datetime import datetime
 from typing import Optional, List
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Body
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
@@ -401,6 +401,133 @@ def sync_user(user_id: int, req: SyncRequest):
         raise
     except Exception as e:
         session.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        session.close()
+
+
+# ═══════════════════════════════════════════════════════════════
+# RECOMMENDATION ENDPOINTS
+# ═══════════════════════════════════════════════════════════════
+
+
+@app.get("/api/recommendations/{user_id}")
+def get_recommendations(
+    user_id: int,
+    limit: int = Query(default=20, le=100),
+    offset: int = Query(default=0, ge=0),
+    category: Optional[str] = Query(default=None),
+    min_score: Optional[float] = Query(default=None),
+):
+    """Get ranked product recommendations for a user."""
+    from matching.ranker import get_matched_products
+    from matching.config import MatchingConfig, DEFAULT_CONFIG
+
+    session = get_session()
+    try:
+        config = DEFAULT_CONFIG
+        if min_score is not None:
+            config = MatchingConfig()
+            config.filters.min_score = min_score
+
+        filters = {}
+        if category:
+            filters["category"] = category
+
+        return get_matched_products(
+            user_id=user_id,
+            session=session,
+            limit=limit,
+            offset=offset,
+            config=config,
+            filters=filters,
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        session.close()
+
+
+@app.get("/api/recommendations/{user_id}/curated")
+def get_curated_zine(
+    user_id: int,
+    max_products: int = Query(default=12, le=20),
+):
+    """Get a curated zine with diversity rules applied."""
+    from matching.curator import curate_zine
+
+    session = get_session()
+    try:
+        zine = curate_zine(
+            user_id=user_id,
+            session=session,
+            max_products=max_products,
+        )
+        return zine.to_dict()
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        session.close()
+
+
+@app.get("/api/recommendations/{user_id}/explain/{product_id}")
+def explain_product_match(user_id: int, product_id: int):
+    """Explain why a product was recommended to a user."""
+    from matching.explainer import explain_match
+
+    session = get_session()
+    try:
+        user = session.query(User).get(user_id)
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+
+        product = session.query(Product).get(product_id)
+        if not product:
+            raise HTTPException(status_code=404, detail="Product not found")
+
+        return explain_match(user, product)
+    finally:
+        session.close()
+
+
+@app.post("/api/recommendations/preview")
+def preview_recommendations(
+    body: dict = Body(...),
+    limit: int = Query(default=12, le=50),
+):
+    """
+    Preview recommendations for hypothetical preferences.
+
+    Request body: {"aesthetic": "...", "palette": "...", "vibe": "...",
+                   "silhouette": "all", "followedBrands": []}
+    """
+    from matching.ranker import get_matched_products
+
+    temp_user = User(
+        id=0,
+        name="Preview",
+        contact_method="email",
+        contact_value="preview@temp.com",
+        aesthetic=body.get("aesthetic"),
+        palette=body.get("palette"),
+        vibe=body.get("vibe"),
+        silhouette=body.get("silhouette", "all"),
+        followed_brands=body.get("followedBrands", []),
+    )
+
+    session = get_session()
+    try:
+        return get_matched_products(
+            user_id=0,
+            session=session,
+            limit=limit,
+            filters={"_user": temp_user},
+        )
+    except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         session.close()
