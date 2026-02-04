@@ -82,6 +82,10 @@ class Product(Base):
     # Raw source data for debugging
     source_data = Column(JSON, nullable=True)
 
+    # AI tagging
+    ai_tags = Column(JSON, nullable=True)
+    tagged_at = Column(DateTime, nullable=True)
+
     # Price history relationship
     price_history = relationship(
         "ProductHistory", back_populates="product", cascade="all, delete-orphan"
@@ -144,6 +148,8 @@ class Product(Base):
             "isOnSale": self.is_on_sale,
             "discountPercentage": self.discount_percentage,
             "firstSeen": self.first_seen.isoformat() if self.first_seen else None,
+            "aiTags": self.ai_tags,
+            "taggedAt": self.tagged_at.isoformat() if self.tagged_at else None,
         }
 
     def update_from_scraped(self, scraped: "ScrapedProduct"):

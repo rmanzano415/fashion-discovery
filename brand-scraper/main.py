@@ -207,6 +207,30 @@ def scrape_brand(slug: str) -> int:
                     session.add(product)
                     new_count += 1
 
+                    # Auto-tag new products if enabled
+                    if config.TAGGER_AUTO_TAG_NEW:
+                        try:
+                            from tagging import tag_product
+                            from datetime import datetime as dt
+
+                            tags, _usage = tag_product(
+                                name=sp.name,
+                                brand=brand.name,
+                                price=sp.price,
+                                images=sp.images,
+                                category=sp.category,
+                                description=sp.description,
+                                colors=sp.colors,
+                                gender=sp.gender,
+                            )
+                            product.ai_tags = tags.to_dict()
+                            product.tagged_at = dt.utcnow()
+                            logger.info(f"Auto-tagged: {sp.name[:50]}")
+                        except Exception as tag_err:
+                            logger.warning(
+                                f"Auto-tagging failed for {sp.name}: {tag_err}"
+                            )
+
             # Mark products not seen as potentially removed
             # (Products not in this scrape that were last seen recently)
             # This is handled separately to avoid false positives
@@ -390,6 +414,39 @@ def main():
     # init-db command
     subparsers.add_parser("init-db", help="Initialize database tables")
 
+    # tag command group
+    tag_parser = subparsers.add_parser("tag", help="AI product tagging")
+    tag_subparsers = tag_parser.add_subparsers(dest="tag_command", help="Tagging sub-command")
+
+    tag_subparsers.add_parser("migrate", help="Add ai_tags/tagged_at columns to existing DB")
+
+    bulk_parser = tag_subparsers.add_parser("bulk", help="Tag untagged products")
+    bulk_parser.add_argument("--batch-size", type=int, default=config.TAGGER_BATCH_SIZE)
+    bulk_parser.add_argument("--max", type=int, default=None, help="Max products to tag")
+    bulk_parser.add_argument("--dry-run", action="store_true", help="Estimate costs only")
+    bulk_parser.add_argument("--brand", help="Filter by brand slug")
+
+    batch_submit_parser = tag_subparsers.add_parser("batch-submit", help="Submit batch to API")
+    batch_submit_parser.add_argument("--max", type=int, default=None)
+
+    batch_status_parser = tag_subparsers.add_parser("batch-status", help="Check batch status")
+    batch_status_parser.add_argument("batch_id", help="Batch ID to check")
+
+    batch_process_parser = tag_subparsers.add_parser("batch-process", help="Apply batch results")
+    batch_process_parser.add_argument("batch_id", help="Batch ID to process")
+
+    tag_subparsers.add_parser("report", help="Tag coverage report")
+    tag_subparsers.add_parser("validate", help="Validate all existing tags")
+
+    view_parser = tag_subparsers.add_parser("view", help="View tags for a product")
+    view_parser.add_argument("product_id", type=int, help="Product DB id")
+
+    retag_parser = tag_subparsers.add_parser("retag", help="Re-tag specific products")
+    retag_parser.add_argument("product_ids", type=int, nargs="+", help="Product DB ids")
+
+    export_tags_parser = tag_subparsers.add_parser("export", help="Export tags to CSV")
+    export_tags_parser.add_argument("--output", "-o", default="tags_export.csv")
+
     # Parse args
     args = parser.parse_args()
 
@@ -427,6 +484,239 @@ def main():
 
     elif args.command == "schedule":
         run_scheduler()
+
+    elif args.command == "tag":
+        _handle_tag_command(args)
+
+
+def _handle_tag_command(args):
+    """Handle all tag sub-commands."""
+    if not args.tag_command:
+        print("Usage: python main.py tag <sub-command>")
+        print("Sub-commands: migrate, bulk, batch-submit, batch-status, batch-process,")
+        print("              report, validate, view, retag, export")
+        sys.exit(1)
+
+    if args.tag_command == "migrate":
+        from sqlalchemy import text, inspect
+        from models import engine
+
+        inspector = inspect(engine)
+        existing = [col["name"] for col in inspector.get_columns("products")]
+
+        with engine.begin() as conn:
+            if "ai_tags" not in existing:
+                conn.execute(text("ALTER TABLE products ADD COLUMN ai_tags JSON"))
+                print("Added column: ai_tags")
+            else:
+                print("Column ai_tags already exists")
+
+            if "tagged_at" not in existing:
+                conn.execute(text("ALTER TABLE products ADD COLUMN tagged_at DATETIME"))
+                print("Added column: tagged_at")
+            else:
+                print("Column tagged_at already exists")
+
+        print("Migration complete.")
+
+    elif args.tag_command == "bulk":
+        from tagging import run_bulk_tagger, estimate_cost, count_untagged
+
+        if args.dry_run:
+            result = run_bulk_tagger(
+                batch_size=args.batch_size,
+                max_products=args.max,
+                dry_run=True,
+                brand_slug=args.brand,
+            )
+            est = result.get("cost_estimate", {})
+            print(f"\nDry Run Report:")
+            print(f"  Untagged products: {result.get('untagged_count', 0)}")
+            print(f"  Would tag: {result.get('target_count', 0)}")
+            print(f"  Estimated cost: ${est.get('total', 0):.4f}")
+            print(f"  Per product: ${est.get('per_product', 0):.4f}")
+        else:
+            untagged = count_untagged()
+            target = min(untagged, args.max) if args.max else untagged
+            est = estimate_cost(target)
+            print(f"\nWill tag {target} products (estimated cost: ${est['total']:.4f})")
+            confirm = input("Proceed? [y/N] ").strip().lower()
+            if confirm != "y":
+                print("Aborted.")
+                return
+
+            result = run_bulk_tagger(
+                batch_size=args.batch_size,
+                max_products=args.max,
+                brand_slug=args.brand,
+            )
+            cost = result.get("cost", {})
+            print(f"\nBulk Tagging Complete:")
+            print(f"  Tagged: {result.get('tagged', 0)}")
+            print(f"  Errors: {result.get('errors', 0)}")
+            print(f"  Total cost: ${cost.get('total_cost', 0):.4f}")
+
+    elif args.tag_command == "batch-submit":
+        from tagging import create_batch_jsonl, submit_batch
+
+        jsonl_path, count = create_batch_jsonl(max_products=args.max)
+        if not jsonl_path:
+            print("No untagged products found.")
+            return
+
+        print(f"Created JSONL with {count} requests: {jsonl_path}")
+        batch_id = submit_batch(jsonl_path)
+        print(f"Submitted batch: {batch_id}")
+        print(f"Check status: python main.py tag batch-status {batch_id}")
+
+    elif args.tag_command == "batch-status":
+        from tagging.batch import get_batch_status
+
+        status = get_batch_status(args.batch_id)
+        print(f"\nBatch Status: {args.batch_id}")
+        for k, v in status.items():
+            print(f"  {k}: {v}")
+
+    elif args.tag_command == "batch-process":
+        from tagging import process_batch_results
+
+        result = process_batch_results(args.batch_id)
+        print(f"\nBatch Results Applied:")
+        print(f"  Applied: {result.get('applied', 0)}")
+        print(f"  Errors: {result.get('errors', 0)}")
+
+    elif args.tag_command == "report":
+        session = Session()
+        try:
+            total = session.query(Product).filter(Product.is_active.is_(True)).count()
+            tagged = session.query(Product).filter(
+                Product.is_active.is_(True),
+                Product.ai_tags.isnot(None),
+            ).count()
+            untagged = total - tagged
+
+            print(f"\nTag Coverage Report:")
+            print(f"  Total active products: {total}")
+            print(f"  Tagged: {tagged} ({tagged/total*100:.1f}%)" if total else f"  Tagged: {tagged}")
+            print(f"  Untagged: {untagged}")
+        finally:
+            session.close()
+
+    elif args.tag_command == "validate":
+        from tagging.taxonomy import validate_tags
+
+        session = Session()
+        try:
+            products = session.query(Product).filter(
+                Product.ai_tags.isnot(None)
+            ).all()
+
+            invalid_count = 0
+            for p in products:
+                is_valid, errors = validate_tags(p.ai_tags)
+                if not is_valid:
+                    invalid_count += 1
+                    print(f"  Product {p.id} ({p.name[:40]}): {errors}")
+
+            print(f"\nValidated {len(products)} tagged products: {invalid_count} with issues")
+        finally:
+            session.close()
+
+    elif args.tag_command == "view":
+        session = Session()
+        try:
+            product = session.query(Product).get(args.product_id)
+            if not product:
+                print(f"Product {args.product_id} not found.")
+                return
+
+            print(f"\nProduct: {product.name}")
+            print(f"Brand: {product.brand.name if product.brand else 'N/A'}")
+            print(f"Price: ${product.price:.2f}")
+
+            if product.ai_tags:
+                print(f"Tagged at: {product.tagged_at}")
+                import json as _json
+                print(f"Tags:\n{_json.dumps(product.ai_tags, indent=2)}")
+            else:
+                print("Not tagged yet.")
+        finally:
+            session.close()
+
+    elif args.tag_command == "retag":
+        from tagging import tag_product_from_model
+        from sqlalchemy.orm import joinedload
+
+        session = Session()
+        try:
+            for pid in args.product_ids:
+                product = (
+                    session.query(Product)
+                    .options(joinedload(Product.brand))
+                    .get(pid)
+                )
+                if not product:
+                    print(f"Product {pid} not found, skipping.")
+                    continue
+
+                try:
+                    tags, usage = tag_product_from_model(product)
+                    product.ai_tags = tags.to_dict()
+                    product.tagged_at = datetime.utcnow()
+                    session.commit()
+                    print(f"Re-tagged product {pid}: {product.name[:50]}")
+                except Exception as e:
+                    print(f"Failed to re-tag product {pid}: {e}")
+        finally:
+            session.close()
+
+    elif args.tag_command == "export":
+        import csv
+
+        session = Session()
+        try:
+            products = session.query(Product).filter(
+                Product.ai_tags.isnot(None)
+            ).all()
+
+            if not products:
+                print("No tagged products to export.")
+                return
+
+            output_path = Path(args.output)
+            fieldnames = [
+                "id", "name", "brand", "price", "aesthetics", "palette",
+                "vibes", "category", "occasions", "season", "price_tier",
+                "color_temperature", "primary_colors", "keywords", "tagged_at",
+            ]
+
+            with open(output_path, "w", newline="", encoding="utf-8") as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+
+                for p in products:
+                    tags = p.ai_tags or {}
+                    writer.writerow({
+                        "id": p.id,
+                        "name": p.name,
+                        "brand": p.brand.name if p.brand else "",
+                        "price": p.price,
+                        "aesthetics": ", ".join(tags.get("aesthetics", [])),
+                        "palette": tags.get("palette", ""),
+                        "vibes": ", ".join(tags.get("vibes", [])),
+                        "category": tags.get("category", ""),
+                        "occasions": ", ".join(tags.get("occasions", [])),
+                        "season": tags.get("season", ""),
+                        "price_tier": tags.get("price_tier", ""),
+                        "color_temperature": tags.get("color_temperature", ""),
+                        "primary_colors": ", ".join(tags.get("primary_colors", [])),
+                        "keywords": ", ".join(tags.get("keywords", [])),
+                        "tagged_at": p.tagged_at.isoformat() if p.tagged_at else "",
+                    })
+
+            print(f"Exported {len(products)} tagged products to {output_path}")
+        finally:
+            session.close()
 
 
 if __name__ == "__main__":

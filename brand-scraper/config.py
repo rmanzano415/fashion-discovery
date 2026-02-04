@@ -106,3 +106,15 @@ API_PORT = int(os.getenv("API_PORT", "8000"))
 
 # Path to export JSON files for the frontend
 EXPORT_DIR = BASE_DIR.parent / "src" / "data"
+
+# ═══════════════════════════════════════════════════════════════
+# AI TAGGING
+# ═══════════════════════════════════════════════════════════════
+
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+TAGGER_MODEL = os.getenv("TAGGER_MODEL", "claude-sonnet-4-5-20250929")
+TAGGER_MAX_TOKENS = int(os.getenv("TAGGER_MAX_TOKENS", "512"))
+TAGGER_MAX_IMAGES = int(os.getenv("TAGGER_MAX_IMAGES", "2"))
+TAGGER_BATCH_SIZE = int(os.getenv("TAGGER_BATCH_SIZE", "20"))
+TAGGER_BATCH_POLL_INTERVAL = int(os.getenv("TAGGER_BATCH_POLL_INTERVAL", "60"))
+TAGGER_AUTO_TAG_NEW = os.getenv("TAGGER_AUTO_TAG_NEW", "false").lower() == "true"
