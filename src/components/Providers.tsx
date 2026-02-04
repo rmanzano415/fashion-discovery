@@ -42,6 +42,8 @@ interface AppContextType {
   unfollowBrand: (brandId: string) => void;
   isFollowingBrand: (brandId: string) => boolean;
   saveProfile: (updates: Partial<SubscriberProfile>) => void;
+  // User
+  userId: number | null;
   // Loading
   isLoaded: boolean;
 }
@@ -80,6 +82,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     isLoaded: profileLoaded,
     initials: profileInitials,
     hasCompletedOnboarding,
+    userId,
     updateSubscriberInfo,
     updateMandate,
     updateBriefing,
@@ -117,6 +120,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
         unfollowBrand,
         isFollowingBrand,
         saveProfile,
+        // User
+        userId,
         // Loading
         isLoaded,
       }}

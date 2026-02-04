@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { useApp } from '@/components/Providers';
 import { Header } from '@/components/Header';
 import { CardStack, calculateTotalPages } from '@/components/CardStack';
@@ -9,33 +10,10 @@ import { SettingsDrawer } from '@/components/SettingsDrawer';
 import { ProductDetailModal } from '@/components/ProductDetailModal';
 import { Product } from '@/types/product';
 import { clearTornItems } from '@/components/TearableImage';
-import aldProducts from '@/data/products.json';
-import pnsProducts from '@/data/pas-normal-studios-products.json';
-
-// Seeded shuffle for consistent ordering
-function seededShuffle<T>(array: T[], seed: number): T[] {
-  const shuffled = [...array];
-  let m = shuffled.length;
-  while (m) {
-    const i = Math.floor(seededRandom(seed++) * m--);
-    [shuffled[m], shuffled[i]] = [shuffled[i], shuffled[m]];
-  }
-  return shuffled;
-}
-function seededRandom(seed: number): number {
-  const x = Math.sin(seed) * 10000;
-  return x - Math.floor(x);
-}
-
-// Combine products from both brands, interleaved for variety (stable shuffle)
-const products = seededShuffle([...aldProducts, ...pnsProducts], 42);
-
-// Extract unique brands for settings
-const availableBrands = Array.from(
-  new Set(products.map((p) => p.brand || p.category || 'Unknown'))
-).map((name) => ({ id: name.toLowerCase().replace(/\s+/g, '-'), name }));
+import { useRecommendations } from '@/hooks/useRecommendations';
 
 export default function Home() {
+  const router = useRouter();
   const {
     favorites,
     addFavorite,
@@ -43,14 +21,25 @@ export default function Home() {
     isFavorite,
     profile,
     profileInitials,
+    hasCompletedOnboarding,
+    userId,
     saveProfile,
     isLoaded,
   } = useApp();
 
+  // Fetch personalized recommendations
+  const { products, isLoading: isLoadingProducts, error: productsError, refetch } = useRecommendations(userId);
+
+  // Onboarding guard
+  useEffect(() => {
+    if (isLoaded && !hasCompletedOnboarding) {
+      router.push('/onboarding');
+    }
+  }, [isLoaded, hasCompletedOnboarding, router]);
+
   // Track cover and page state
   const [isCoverOpen, setIsCoverOpen] = useState(false);
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
-  // Key to force re-mount of CardStack when reset (clears torn item visual state)
   const [resetKey, setResetKey] = useState(0);
 
   // Settings drawer state
@@ -60,19 +49,16 @@ export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   // Calculate total pages
-  const totalPages = useMemo(() => calculateTotalPages(products.length), []);
+  const totalPages = useMemo(() => calculateTotalPages(products.length), [products.length]);
 
-  // Handle product selection (opens modal)
   const handleSelectProduct = useCallback((product: Product) => {
     setSelectedProduct(product);
   }, []);
 
-  // Close modal
   const handleCloseModal = useCallback(() => {
     setSelectedProduct(null);
   }, []);
 
-  // Toggle bookmark
   const handleBookmark = useCallback(
     (product: Product) => {
       if (isFavorite(product.id)) {
@@ -84,7 +70,6 @@ export default function Home() {
     [isFavorite, addFavorite, removeFavorite]
   );
 
-  // Handle tear-to-favorite - find product by ID and add to favorites
   const handleTear = useCallback(
     (productId: string) => {
       const product = products.find((p) => p.id === productId);
@@ -92,7 +77,7 @@ export default function Home() {
         addFavorite(product as Product);
       }
     },
-    [isFavorite, addFavorite]
+    [products, isFavorite, addFavorite]
   );
 
   const handleCoverOpen = useCallback(() => {
@@ -106,16 +91,14 @@ export default function Home() {
   const handleReset = useCallback(() => {
     setCurrentPageIndex(0);
     setIsCoverOpen(false);
-    // Clear torn items so they can be re-collected
     clearTornItems();
-    // Force re-mount of CardStack to clear visual torn state
     setResetKey((k) => k + 1);
   }, []);
 
-  if (!isLoaded) {
+  // Show loading while context loads or onboarding guard is evaluating
+  if (!isLoaded || (!hasCompletedOnboarding && isLoaded)) {
     return (
       <div className="min-h-screen bg-[var(--archive-white)] flex items-center justify-center">
-        {/* Editorial loading state */}
         <div className="flex flex-col items-center">
           <div className="w-px h-12 bg-[var(--soft-gray)] mb-4" />
           <span className="issue-label">Loading</span>
@@ -124,6 +107,86 @@ export default function Home() {
       </div>
     );
   }
+
+  // Loading recommendations
+  if (isLoadingProducts) {
+    return (
+      <div className="min-h-screen bg-[var(--archive-white)] flex items-center justify-center">
+        <div className="flex flex-col items-center">
+          <div className="w-px h-12 bg-[var(--soft-gray)] mb-4" />
+          <span className="issue-label">Curating your zine</span>
+          <div className="w-px h-12 bg-[var(--soft-gray)] mt-4 animate-pulse" />
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (productsError) {
+    return (
+      <div className="min-h-screen bg-[var(--archive-white)] flex items-center justify-center px-6">
+        <div className="flex flex-col items-center text-center max-w-sm">
+          <div className="w-px h-12 bg-[var(--soft-gray)] mb-4" />
+          <span className="issue-label mb-2">Unable to load</span>
+          <p className="text-sm text-[var(--mid-gray)] mb-4">
+            We couldn&apos;t reach the curation engine. Please check that the backend is running and try again.
+          </p>
+          <button
+            onClick={refetch}
+            className="text-xs uppercase tracking-[0.15em] border border-[var(--soft-gray)] px-4 py-2 hover:bg-[var(--warm-cream)] transition-colors"
+          >
+            Retry
+          </button>
+          <div className="w-px h-12 bg-[var(--soft-gray)] mt-4" />
+        </div>
+      </div>
+    );
+  }
+
+  // Empty state — no matches
+  if (products.length === 0) {
+    return (
+      <div className="min-h-screen bg-[var(--archive-white)] flex items-center justify-center px-6">
+        <div className="flex flex-col items-center text-center max-w-sm">
+          <div className="w-px h-12 bg-[var(--soft-gray)] mb-4" />
+          <span className="issue-label mb-2">No matches yet</span>
+          <p className="text-sm text-[var(--mid-gray)] mb-4">
+            We couldn&apos;t find products matching your style profile. Try adjusting your aesthetic preferences in settings.
+          </p>
+          <button
+            onClick={() => setIsSettingsOpen(true)}
+            className="text-xs uppercase tracking-[0.15em] border border-[var(--soft-gray)] px-4 py-2 hover:bg-[var(--warm-cream)] transition-colors"
+          >
+            Open Settings
+          </button>
+          <div className="w-px h-12 bg-[var(--soft-gray)] mt-4" />
+        </div>
+
+        <FolioFooter
+          issueTitle="SS26"
+          issueYear="2026"
+          currentPage={0}
+          totalPages={0}
+          subscriberInitials={profileInitials || undefined}
+          favoritesCount={favorites.length}
+          onOpenSettings={() => setIsSettingsOpen(true)}
+        />
+
+        <SettingsDrawer
+          isOpen={isSettingsOpen}
+          onClose={() => setIsSettingsOpen(false)}
+          profile={profile}
+          onSave={saveProfile}
+          availableBrands={[]}
+        />
+      </div>
+    );
+  }
+
+  // Extract unique brands for settings
+  const availableBrands = Array.from(
+    new Set(products.map((p) => p.brand || p.category || 'Unknown'))
+  ).map((name) => ({ id: name.toLowerCase().replace(/\s+/g, '-'), name }));
 
   return (
     <main className="min-h-screen bg-[var(--archive-white)] pb-16">
@@ -139,7 +202,6 @@ export default function Home() {
 
       <div className="px-4 pt-2">
         <div className="max-w-lg mx-auto">
-          {/* Card area - full height for immersive reading */}
           <div className="relative h-[calc(100vh-160px)] min-h-[520px]">
             <CardStack
               key={resetKey}
@@ -156,7 +218,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Folio Footer */}
       <FolioFooter
         issueTitle="SS26"
         issueYear="2026"
@@ -167,7 +228,6 @@ export default function Home() {
         onOpenSettings={() => setIsSettingsOpen(true)}
       />
 
-      {/* Settings Drawer */}
       <SettingsDrawer
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
@@ -176,7 +236,6 @@ export default function Home() {
         availableBrands={availableBrands}
       />
 
-      {/* Product Detail Modal */}
       <ProductDetailModal
         product={selectedProduct}
         isOpen={selectedProduct !== null}

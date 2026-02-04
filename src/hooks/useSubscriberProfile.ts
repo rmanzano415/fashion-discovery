@@ -8,9 +8,9 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 
 export type Silhouette = 'menswear' | 'womenswear' | 'all';
 export type Tempo = 'weekly' | 'monthly' | 'quarterly';
-export type Aesthetic = 'minimalist' | 'avant-garde' | 'street' | 'heritage';
-export type Palette = 'earth' | 'monolith' | 'primary';
-export type Vibe = 'understated' | 'bold' | 'eclectic' | 'refined';
+export type Aesthetic = 'minimalist' | 'avant-garde' | 'street' | 'heritage' | 'streetwear' | 'classic';
+export type Palette = 'earth' | 'monolith' | 'primary' | 'earth-tones' | 'monochrome' | 'brights';
+export type Vibe = 'understated' | 'bold' | 'eclectic' | 'refined' | 'artistic' | 'sophisticated';
 
 export interface SubscriberProfile {
   subscriberName: string;
