@@ -1,30 +1,107 @@
 # Fashion Discovery
 
-A mobile-first fashion discovery app with Tinder-style swipe gestures. Browse curated products from Aime Leon Dore, swipe right to save favorites, and build your wishlist.
+A personalized fashion curation app that creates custom "zine" editions based on your style preferences. Complete an editorial-style onboarding to define your aesthetic, select brands you love, and receive AI-curated product recommendations tailored to your taste.
 
 ## Features
 
-- **Swipeable Cards**: Drag products left to skip or right to save
-- **Gesture Controls**: Natural swipe interactions with visual feedback
-- **Favorites List**: Persistent storage of liked items using localStorage
-- **Progress Tracking**: See how many products you've browsed
-- **Magazine-Style UI**: Clean, modern design with smooth animations
-- **Mobile-First**: Optimized for touch devices, works great on desktop too
-- **Real Product Data**: Scrapes actual products from Aime Leon Dore
+### Onboarding Experience
+- **Editorial Briefing Flow**: Magazine-inspired onboarding with style specification, aesthetic quiz, and brand selection
+- **Style Profiling**: Choose your aesthetic (minimalist, avant-garde, street, heritage), palette (earth tones, monochrome, brights), and vibe (understated, bold, eclectic, refined)
+- **Brand Directory**: Select from curated brands or add custom ones
+- **Printing Interstitial**: Animated "press" experience when your edition is being prepared
+
+### Personalized Recommendations
+- **AI Product Tagging**: Products analyzed with Claude Vision for aesthetic tags, color palettes, style vibes, and occasions
+- **Smart Matching**: Scoring engine matches your preferences against product AI tags
+- **Curated Zine**: Diversity-balanced selection across brands and categories
+- **Match Explanations**: Understand why products were recommended for you
+
+### Curation Gate
+- **Readiness Check**: After onboarding, verifies if enough products are ready for your selected brands
+- **Matching Interstitial**: When ready, animated approval flow with audio feedback before viewing your zine
+- **Editorial Desk**: When not ready, shows brand status and notification opt-in
+
+### Discovery Interface
+- **Tearable Cards**: Double-tap to "tear" and collect products with paper-tear sound effects
+- **Swipe Gestures**: Natural card interactions with visual feedback
+- **Favorites Collection**: Persistent storage of collected items
+- **Product Details**: Full product info with brand context
 
 ## Tech Stack
 
+### Frontend
 - **Framework**: Next.js 16 with App Router
 - **Language**: TypeScript
 - **Styling**: TailwindCSS
 - **Animations**: Framer Motion
-- **Data**: Product scraper for Shopify stores
+- **Audio**: Web Audio API for UI sounds
+
+### Backend
+- **API**: FastAPI (Python)
+- **Database**: SQLite with SQLAlchemy ORM
+- **AI**: Claude Vision for product tagging
+
+## Project Structure
+
+```
+fashion-discovery/
+├── brand-scraper/                 # Python backend
+│   ├── api.py                     # FastAPI endpoints
+│   ├── config.py                  # Configuration
+│   ├── models/                    # SQLAlchemy models
+│   │   ├── brand.py
+│   │   ├── product.py
+│   │   ├── user.py
+│   │   ├── interaction.py
+│   │   └── delivery.py
+│   ├── matching/                  # Recommendation engine
+│   │   ├── scorer.py              # Preference-to-product scoring
+│   │   ├── ranker.py              # Product ranking
+│   │   ├── curator.py             # Diversity-balanced selection
+│   │   └── explainer.py           # Match explanations
+│   ├── tagging/                   # AI product analysis
+│   │   ├── tagger.py              # Claude Vision integration
+│   │   └── taxonomy.py            # Style/aesthetic enums
+│   ├── scrapers/                  # Brand product scrapers
+│   └── data/                      # SQLite database
+├── src/
+│   ├── app/
+│   │   ├── page.tsx               # Main zine view
+│   │   ├── onboarding/            # Onboarding flow
+│   │   ├── editorial-desk/        # Curation pending page
+│   │   ├── favorites/             # Collected items
+│   │   └── settings/              # User preferences
+│   ├── components/
+│   │   ├── onboarding/            # Onboarding screens
+│   │   │   ├── OnboardingContainer.tsx
+│   │   │   ├── CoverScreen.tsx
+│   │   │   ├── SpecificationScreen.tsx
+│   │   │   ├── StyleBriefing.tsx
+│   │   │   ├── BrandDirectory.tsx
+│   │   │   ├── RegistryScreen.tsx
+│   │   │   ├── PrintingInterstitial.tsx
+│   │   │   └── MatchingInterstitial.tsx
+│   │   ├── EditorialDesk.tsx      # Curation pending UI
+│   │   ├── TearableImage.tsx      # Collectible product card
+│   │   ├── ZineSpread.tsx         # Magazine layout
+│   │   └── Providers.tsx          # App context
+│   ├── hooks/
+│   │   ├── useSubscriberProfile.ts
+│   │   ├── useRecommendations.ts
+│   │   ├── useFavorites.ts
+│   │   └── useSwipedProducts.ts
+│   └── lib/
+│       ├── curationGate.ts        # Curation readiness check
+│       └── profileMapping.ts      # Profile type conversion
+└── package.json
+```
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js 18+
+- Python 3.10+
 - npm or yarn
 
 ### Installation
@@ -35,142 +112,100 @@ git clone <repo-url>
 cd fashion-discovery
 ```
 
-2. Install dependencies:
+2. Install frontend dependencies:
 ```bash
 npm install
 ```
 
-3. Run the development server:
+3. Set up the Python backend:
+```bash
+cd brand-scraper
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+4. Set up environment variables:
+```bash
+# In brand-scraper/.env
+ANTHROPIC_API_KEY=your_api_key_here
+```
+
+### Running the App
+
+1. Start the backend API:
+```bash
+cd brand-scraper
+source venv/bin/activate
+uvicorn api:app --reload --port 8000
+```
+
+2. Start the frontend (in a new terminal):
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+3. Open [http://localhost:3000](http://localhost:3000)
 
-## Project Structure
+## API Endpoints
 
-```
-fashion-discovery/
-├── scraper/
-│   └── scrape-ald.ts      # Product scraper for Aime Leon Dore
-├── src/
-│   ├── app/
-│   │   ├── favorites/
-│   │   │   └── page.tsx   # Favorites list page
-│   │   ├── globals.css    # Global styles
-│   │   ├── layout.tsx     # Root layout with providers
-│   │   └── page.tsx       # Home page with card stack
-│   ├── components/
-│   │   ├── ActionButtons.tsx   # Like/dislike buttons
-│   │   ├── CardStack.tsx       # Manages visible cards
-│   │   ├── FavoriteCard.tsx    # Grid card for favorites
-│   │   ├── Header.tsx          # Page header with progress
-│   │   ├── Navigation.tsx      # Bottom tab navigation
-│   │   ├── ProductCard.tsx     # Swipeable product card
-│   │   └── Providers.tsx       # App context provider
-│   ├── data/
-│   │   └── products.json       # Scraped product data
-│   ├── hooks/
-│   │   ├── useFavorites.ts     # Favorites management
-│   │   └── useSwipedProducts.ts # Swipe tracking
-│   └── types/
-│       └── product.ts          # TypeScript interfaces
-└── package.json
-```
+### Users
+- `POST /api/users` - Create user from onboarding
+- `GET /api/users/{id}` - Get user profile
+- `PUT /api/users/{id}` - Update user profile
 
-## Scraper
+### Recommendations
+- `GET /api/recommendations/{user_id}` - Get ranked recommendations
+- `GET /api/recommendations/{user_id}/curated` - Get curated zine
+- `GET /api/recommendations/{user_id}/explain/{product_id}` - Explain match
+- `POST /api/recommendations/preview` - Preview for preferences
 
-The scraper extracts products from Aime Leon Dore's Shopify store.
+### Curation
+- `POST /api/curation-status` - Check if curation is ready for brands
 
-### Running the Scraper
+### Interactions
+- `POST /api/interactions` - Log swipe/favorite events
+- `GET /api/users/{user_id}/favorites` - Get user's favorites
 
+## Product Tagging
+
+Products are analyzed with Claude Vision to extract:
+- **Aesthetics**: minimalist, maximalist, avant-garde, streetwear, etc.
+- **Palette**: earth-tones, monochrome, pastels, brights, etc.
+- **Vibes**: understated, bold, playful, sophisticated, etc.
+- **Occasions**: casual, formal, athletic, evening, etc.
+- **Materials**: cotton, leather, denim, silk, etc.
+
+Run the tagger:
 ```bash
-npx ts-node scraper/scrape-ald.ts
+cd brand-scraper
+source venv/bin/activate
+python -m tagging.tagger --brand aime-leon-dore --limit 50
 ```
 
-This will:
-1. Fetch products from the Shopify JSON API
-2. Transform the data to our format
-3. Save 50 products to `src/data/products.json`
+## Design System
 
-### Scraped Data Format
+The app uses an editorial/archival aesthetic:
+- **Archive White**: `#F8F5F2` - Primary background
+- **Ink Black**: `#1A1A1A` - Primary text
+- **Paper Cream**: `#F4F1ED` - Secondary background
+- **Accent Warm**: `#C4A77D` - Highlights
 
-```typescript
-interface Product {
-  id: string;
-  name: string;
-  price: string;
-  priceNumeric: number;
-  images: string[];
-  url: string;
-  brand: string;
-  category?: string;
-  description?: string;
-  colors?: string[];
-  sizes?: string[];
-}
-```
-
-### Anti-Scraping Notes
-
-Aime Leon Dore uses Shopify, which exposes a `/products.json` endpoint. If this endpoint is blocked, the scraper includes fallback sample data. Alternative approaches:
-- Use a headless browser (Puppeteer/Playwright)
-- Rotate user agents
-- Add delays between requests
-- Use a proxy service
-
-## Usage
-
-### Discover Page
-- **Swipe Right** or **Tap Heart**: Save product to favorites
-- **Swipe Left** or **Tap X**: Skip product
-- **Image Arrows**: Browse multiple product images
-- **Reset Button**: Start over with all products
-
-### Favorites Page
-- View all saved products in a grid
-- Click product to visit the original page
-- Remove items with the trash icon
-- Clear all favorites with Reset
+Typography:
+- **Serif**: Georgia/Times for editorial headers
+- **Mono**: SF Mono for labels and captions
 
 ## Scripts
 
 ```bash
+# Frontend
 npm run dev      # Start development server
 npm run build    # Build for production
-npm run start    # Start production server
 npm run lint     # Run ESLint
-```
 
-## Customization
-
-### Adding New Brands
-
-1. Create a new scraper in `scraper/` following the ALD pattern
-2. Update the data source in `src/data/`
-3. Modify the Product interface if needed
-
-### Styling
-
-The app uses TailwindCSS with a custom color scheme defined in `globals.css`. Key design tokens:
-- Background: `#f9fafb` (gray-50)
-- Text: `#111827` (gray-900)
-- Accent: System colors for like (green) and dislike (red)
-
-## Deployment
-
-### Vercel (Recommended)
-
-```bash
-npm install -g vercel
-vercel
-```
-
-### Static Export
-
-```bash
-npm run build
-# Output in .next/ folder
+# Backend
+uvicorn api:app --reload  # Start API server
+python -m tagging.tagger  # Run product tagger
 ```
 
 ## License

@@ -12,8 +12,9 @@ export interface RecommendedProduct extends Product {
 }
 
 function parseProduct(raw: Record<string, unknown>): RecommendedProduct {
-  const priceStr = (raw.price as string) || '$0';
-  const priceNumeric = parseFloat(priceStr.replace(/[^0-9.]/g, '')) || 0;
+  const rawPrice = raw.price;
+  const priceNumeric = typeof rawPrice === 'number' ? rawPrice : parseFloat(String(rawPrice).replace(/[^0-9.]/g, '')) || 0;
+  const priceStr = typeof rawPrice === 'string' ? rawPrice : `$${priceNumeric}`;
 
   return {
     id: raw.id as string,
