@@ -72,10 +72,10 @@ interface OnboardingContainerProps {
 // ═══════════════════════════════════════════════════════════════
 
 const PRESET_BRANDS = [
-  { id: 'ald', name: 'Aim\u00e9 Leon Dore', url: 'aimeleondore.com' },
+  { id: 'aime-leon-dore', name: 'Aimé Leon Dore', url: 'aimeleondore.com' },
   { id: 'kith', name: 'Kith', url: 'kith.com' },
-  { id: 'stussy', name: 'St\u00fcssy', url: 'stussy.com' },
-  { id: 'noah', name: 'Noah NY', url: 'noahny.com' },
+  { id: 'stussy', name: 'Stüssy', url: 'stussy.com' },
+  { id: 'noah-ny', name: 'Noah NY', url: 'noahny.com' },
   { id: 'drakes', name: "Drake's", url: 'drakes.com' },
   { id: 'jjjjound', name: 'JJJJound', url: 'jjjjound.com' },
   { id: 'apc', name: 'A.P.C.', url: 'apc.fr' },

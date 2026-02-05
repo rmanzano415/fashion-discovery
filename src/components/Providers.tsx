@@ -44,6 +44,7 @@ interface AppContextType {
   saveProfile: (updates: Partial<SubscriberProfile>) => void;
   // User
   userId: number | null;
+  setUserId: (id: number) => void;
   // Loading
   isLoaded: boolean;
 }
@@ -90,6 +91,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     unfollowBrand,
     isFollowingBrand,
     saveProfile,
+    setUserId,
   } = useSubscriberProfile();
 
   const isLoaded = favoritesLoaded && swipedLoaded && profileLoaded;
@@ -122,6 +124,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         saveProfile,
         // User
         userId,
+        setUserId,
         // Loading
         isLoaded,
       }}

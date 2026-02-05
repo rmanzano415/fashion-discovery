@@ -8,6 +8,7 @@ export { BrandTile } from './BrandTile';
 export { AddBrandOverlay } from './AddBrandOverlay';
 export { RegistryScreen } from './RegistryScreen';
 export { PrintingInterstitial } from './PrintingInterstitial';
+export { MatchingInterstitial } from './MatchingInterstitial';
 
 // Types
 export type {

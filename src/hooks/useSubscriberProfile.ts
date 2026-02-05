@@ -24,6 +24,8 @@ export interface SubscriberProfile {
   vibe?: Vibe;
   createdAt: number;
   updatedAt: number;
+  curationTimestamp?: number;
+  notifyOnReady?: boolean;
 }
 
 const STORAGE_KEY = 'zine-subscriber-profile';
@@ -71,6 +73,7 @@ async function apiPut(userId: number, data: Record<string, unknown>): Promise<vo
 export function useSubscriberProfile() {
   const [profile, setProfile] = useState<SubscriberProfile>(DEFAULT_PROFILE);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [userId, setUserIdState] = useState<number | null>(null);
   const userIdRef = useRef<number | null>(null);
 
   // Load from localStorage on mount
@@ -83,7 +86,9 @@ export function useSubscriberProfile() {
       }
       const storedId = localStorage.getItem(USER_ID_KEY);
       if (storedId) {
-        userIdRef.current = parseInt(storedId, 10);
+        const parsed = parseInt(storedId, 10);
+        userIdRef.current = parsed;
+        setUserIdState(parsed);
       }
     } catch {
       // Silent fail, use defaults
@@ -201,6 +206,17 @@ export function useSubscriberProfile() {
     [profile.followedBrands]
   );
 
+  // Set userId (used by onboarding to update context after user creation)
+  const setUserId = useCallback((id: number) => {
+    userIdRef.current = id;
+    setUserIdState(id);
+    try {
+      localStorage.setItem(USER_ID_KEY, String(id));
+    } catch {
+      // Silent fail
+    }
+  }, []);
+
   // Clear profile
   const clearProfile = useCallback(() => {
     setProfile(DEFAULT_PROFILE);
@@ -211,12 +227,12 @@ export function useSubscriberProfile() {
       // Silent fail
     }
     userIdRef.current = null;
+    setUserIdState(null);
   }, []);
 
   // Computed values
   const initials = getInitials(profile.subscriberName);
   const hasCompletedOnboarding = profile.subscriberName.length > 0;
-  const userId = userIdRef.current;
 
   return {
     profile,
@@ -232,5 +248,6 @@ export function useSubscriberProfile() {
     isFollowingBrand,
     clearProfile,
     saveProfile,
+    setUserId,
   };
 }

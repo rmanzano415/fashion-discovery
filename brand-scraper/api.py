@@ -58,6 +58,14 @@ class CreateUserRequest(BaseModel):
     vibe: Optional[str] = None
 
 
+class CurationStatusRequest(BaseModel):
+    followedBrands: List[str]
+    aesthetic: Optional[str] = None
+    palette: Optional[str] = None
+    vibe: Optional[str] = None
+    silhouette: str = "all"
+
+
 class UpdateUserRequest(BaseModel):
     subscriberName: Optional[str] = None
     contactMethod: Optional[str] = None
@@ -196,6 +204,72 @@ def update_user(user_id: int, req: UpdateUserRequest):
     except Exception as e:
         session.rollback()
         raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        session.close()
+
+
+# ═══════════════════════════════════════════════════════════════
+# CURATION STATUS ENDPOINT
+# ═══════════════════════════════════════════════════════════════
+
+
+@app.post("/api/curation-status")
+def check_curation_status(req: CurationStatusRequest):
+    """Check if curation is ready for given brands and preferences."""
+    session = get_session()
+    try:
+        brand_statuses = []
+        total_ready = 0
+
+        for slug in req.followedBrands:
+            brand = session.query(Brand).filter(Brand.slug == slug).first()
+            if not brand:
+                brand_statuses.append({
+                    "slug": slug,
+                    "name": slug,
+                    "status": "pending",
+                    "productCount": 0,
+                    "message": "Awaiting inventory",
+                })
+                continue
+
+            # Count tagged products for this brand
+            product_count = (
+                session.query(Product)
+                .filter(
+                    Product.brand_id == brand.id,
+                    Product.is_active == True,  # noqa: E712
+                    Product.ai_tags.isnot(None),
+                )
+                .count()
+            )
+
+            if product_count == 0:
+                status = "scraping"
+                message = "Gathering selections..."
+            elif product_count < 3:
+                status = "insufficient_products"
+                message = "Limited availability"
+            else:
+                status = "ready"
+                message = f"Selecting for '{req.aesthetic or 'your'}' profile..."
+                total_ready += 1
+
+            brand_statuses.append({
+                "slug": slug,
+                "name": brand.name,
+                "status": status,
+                "productCount": product_count,
+                "message": message,
+            })
+
+        is_ready = total_ready > 0 and total_ready >= len(req.followedBrands) * 0.5
+
+        return {
+            "isReady": is_ready,
+            "brandStatuses": brand_statuses,
+            "estimatedWaitSeconds": None if is_ready else 300,
+        }
     finally:
         session.close()
 
